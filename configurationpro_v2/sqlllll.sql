@@ -1,0 +1,1 @@
+SELECT * FROM configuration_pro.category;
