@@ -38,7 +38,7 @@ public class TransactionServlet extends HttpServlet {
             System.out.println("Number of transactions: " + transactions.size());
             for (Transactions transaction : transactions) {
                 System.out.println("Transaction ID: " + transaction.getTransaction_id());
-                System.out.println("Property ID: " + transaction.getProperty_id());
+                System.out.println("Property ID: " + transaction.getListing_id());
                 System.out.println("Buyer ID: " + transaction.getBuyer_id());
                 System.out.println("Seller ID: " + transaction.getSeller_id());
                 System.out.println("Transaction Date: " + transaction.getTransaction_date());

@@ -2,13 +2,13 @@ package core;
 
 public class Transactions {
 	private int transaction_id;
-    private int property_id;
-    private int buyer_id;
+	 private int listing_id;
+	 private int buyer_id;
     private int seller_id;
     private String transaction_date;
     private double transaction_amount;
 
-    public Transactions(int transactionId, int propertyId, int buyerId, int sellerId, String transactionDate,
+    public Transactions(int transactionId, int listingId, int buyerId, int sellerId, String transactionDate,
 			double transactionAmount) {
 		// TODO Auto-generated constructor stub
 	}
@@ -21,12 +21,12 @@ public class Transactions {
         this.transaction_id = transaction_id;
     }
 
-    public int getProperty_id() {
-        return property_id;
+    public int getListing_id() {
+        return listing_id;
     }
 
-    public void setProperty_id(int property_id) {
-        this.property_id = property_id;
+    public void setListing_id(int listing_id) {
+        this.listing_id = listing_id;
     }
 
     public int getBuyer_id() {
@@ -61,3 +61,6 @@ public class Transactions {
         this.transaction_amount = transaction_amount;
     }
 }
+
+
+

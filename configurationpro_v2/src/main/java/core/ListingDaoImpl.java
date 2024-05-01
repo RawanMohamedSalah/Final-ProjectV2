@@ -9,7 +9,6 @@ import java.util.List;
 
 import database.DatabaseConnection;
 import database.DataAccessException;
-import core.Listing;
 
 public class ListingDaoImpl implements ListingDao {
     private DatabaseConnection dbConnection;
@@ -19,25 +18,38 @@ public class ListingDaoImpl implements ListingDao {
     }
 
     @Override
-    public List<Listing> getAllListings() {
+    public List<Listing> getAllListings()throws DataAccessException { 
         List<Listing> listings = new ArrayList<>();
-        String sql = "SELECT * FROM configuration_pro.listings;";
+        String sql = "SELECT * FROM listingstore1.listings";
 
         try (Connection connection = dbConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql);
              ResultSet rs = preparedStatement.executeQuery()) {
 
             while (rs.next()) {
-                int listingId = rs.getInt("listingId");
-                int cityId = rs.getInt("cityId");
-                int categoryId = rs.getInt("categoryId");
-                int agentId = rs.getInt("agentId");
+                int id = rs.getInt("id");
+                int city_id = rs.getInt("city_id");
+                int category_id = rs.getInt("category_id");
+                int agent_id = rs.getInt("agent_id");
+                int offer_id = rs.getInt("offer_id");
+                int property_type_id = rs.getInt("property_type_id");
+                int documents_id = rs.getInt("documents_id");
                 int bedrooms = rs.getInt("bedrooms");
                 int bathrooms = rs.getInt("bathrooms");
-                double squareFootage = rs.getDouble("squareFootage");
+                double square_footage = rs.getDouble("square_footage");
                 double price = rs.getDouble("price");
 
-                listings.add(new Listing(listingId, cityId, categoryId, agentId, bedrooms, bathrooms, squareFootage, price));
+                Listing.Builder builder = new Listing.Builder(id, city_id, category_id, agent_id);
+                builder.offerId(offer_id);
+                builder.propertyTypeId(property_type_id);
+                builder.documentsId(documents_id);
+                builder.bedrooms(bedrooms);
+                builder.bathrooms(bathrooms);
+                builder.squareFootage(square_footage);
+                builder.price(price);
+
+                Listing listing = builder.build();
+                listings.add(listing);
             }
         } catch (SQLException e) {
             // Wrap the SQLException in a custom unchecked exception

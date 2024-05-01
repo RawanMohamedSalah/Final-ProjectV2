@@ -1,17 +1,32 @@
 package core;
-import java.util.Arrays;
-import java.util.List;
 
-public class PropertyTypes implements PropertyTypesInterface{
-	private List<String> types;
+public class PropertyTypes {
+    private int typeId; // Primary key
+    private String typeName; // Nullable field, corresponds to VARCHAR(45)
 
-    public PropertyTypes() {
-        // Simulate loading property types from a database or other source
-        types = Arrays.asList("Apartment", "House", "Villa", "Condo", "Townhouse", "Duplex");
+    // Default constructor
+    public PropertyTypes() {}
+
+    // Parameterized constructor for initialization
+    public PropertyTypes(int typeId, String typeName) {
+        this.typeId = typeId;
+        this.typeName = typeName;
     }
 
-    @Override
-    public List<String> getPropertyTypes() {
-        return types;
+    // Getters and setters for encapsulation
+    public int getTypeId() {
+        return typeId;
+    }
+
+    public void setTypeId(int typeId) {
+        this.typeId = typeId;
+    }
+
+    public String getTypeName() {
+        return typeName;
+    }
+
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
     }
 }

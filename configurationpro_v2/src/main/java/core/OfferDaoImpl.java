@@ -1,6 +1,5 @@
 package core;
 
-
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -8,36 +7,35 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import database.DatabaseConnection;
 import database.DataAccessException;
+import database.DatabaseConnection;
 
-public class OfferImpl implements OfferDao {
+public class OfferDaoImpl implements OfferDao {
     private DatabaseConnection dbConnection;
 
-    public OfferImpl(DatabaseConnection dbConnection) {
+    public OfferDaoImpl(DatabaseConnection dbConnection) {
         this.dbConnection = dbConnection;
     }
 
     @Override
-public List<OfferType> getAllOfferTypes() throws Exception {
-        List<OfferType> offerTypes = new ArrayList<>();
-        String sql = "SELECT * FROM configuration_pro.offer_types;";
+    public List<Offer> getAllOffers() {
+        List<Offer> offers = new ArrayList<>();
+        String sql = "SELECT * FROM final_project.offer";
 
         try (Connection connection = dbConnection.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql);
              ResultSet rs = preparedStatement.executeQuery()) {
 
             while (rs.next()) {
-                int offerTypeId = rs.getInt("offerTypeId");
-                String offerTypeName = rs.getString("offerTypeName");
-                double discountPercentage = rs.getDouble("discountPercentage");
-                offerTypes.add(new OfferType(offerTypeId, offerTypeName, discountPercentage));
+                int offerId = rs.getInt("offerId");
+                String offerDescription = rs.getString("offerDescription");
+                offers.add(new Offer(offerId, offerDescription));
             }
         } catch (SQLException e) {
             // Wrap the SQLException in a custom unchecked exception
             throw new DataAccessException("Error accessing the database", e);
         }
 
-        return offerTypes;
+        return offers;
     }
 }

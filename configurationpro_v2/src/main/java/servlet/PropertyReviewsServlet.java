@@ -27,7 +27,7 @@ public class PropertyReviewsServlet extends HttpServlet {
     @Override
     public void init() {
         // Retrieve or construct DatabaseConfig with appropriate credentials
-        DatabaseConfig config = new DatabaseConfig("jdbc:mysql://localhost:3306/configuration_pro", "root", "PoPo2222@.com");
+        DatabaseConfig config = new DatabaseConfig("jdbc:mysql://localhost:3306/configurationpro_v2", "root", "PoPo2222@.com");
         DatabaseConnection dbConnection = new MySqlDatabaseConnection(config);
         propertyReviewsDao = new PropertyReviews_Impl(dbConnection);
     }
@@ -38,9 +38,12 @@ public class PropertyReviewsServlet extends HttpServlet {
             List<PropertyReviews> propertyReviews = propertyReviewsDao.getAllPropertyReviews();
             System.out.println("Number of property reviews: " + propertyReviews.size());
             for (PropertyReviews propertyReview : propertyReviews) {
-                System.out.println("Reviewer Name: " + propertyReview.getReviewerName());
+                System.out.println("Review ID: " + propertyReview.getReviewId());
+                System.out.println("Listing ID: " + propertyReview.getListingId());
+System.out.println("User ID: " + propertyReview.getUserId());
                 System.out.println("Rating: " + propertyReview.getRating());
-                System.out.println("Comment: " + propertyReview.getComment());
+                System.out.println("Review Text: " + propertyReview.getReviewText());
+                System.out.println("Review Date: " + propertyReview.getReviewDate());
             }
             request.setAttribute("propertyReviews", propertyReviews);
             RequestDispatcher dispatcher = request.getRequestDispatcher("PropertyReviews.jsp");
@@ -66,4 +69,5 @@ public class PropertyReviewsServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
     }
+
 }

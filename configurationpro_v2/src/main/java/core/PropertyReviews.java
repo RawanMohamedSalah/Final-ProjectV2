@@ -1,79 +1,76 @@
 package core;
 
-import java.util.ArrayList;
-import java.util.List;
+//For Date handling
+import java.sql.Date;
 
 public class PropertyReviews {
-	   private String reviewerName;
-	    private int rating;
-	    private String comment;
-	    private List<PropertyReviewObserver> observers;
-	    private List<PropertyReviews> reviews;
+    private int reviewId; // Primary key
+    private int listingId; // Foreign key, nullable
+    private int userId; // Foreign key, nullable
+    private Float rating; // Nullable (corresponds to FLOAT)
+    private String reviewText; // Nullable (corresponds to VARCHAR(45))
+    private Date reviewDate; // Nullable (DATE type)
 
-	    public PropertyReviews(String reviewerName, int rating, String comment) {
-	        this.reviewerName = reviewerName;
-	        this.rating = rating;
-	        this.comment = comment;
-	        this.observers = new ArrayList<>();
-	        this.reviews = new ArrayList<>();
-	    }
+    // Default constructor
+    public PropertyReviews() {}
 
-	    // Getter and setter methods for reviewerName
-	    public String getReviewerName() {
-	        return reviewerName;
-	    }
+    // Parameterized constructor for initialization
+    public PropertyReviews(int reviewId, int listingId, int userId, Float rating, 
+                           String reviewText, Date reviewDate) {
+        this.reviewId = reviewId;
+        this.listingId = listingId;
+        this.userId = userId;
+        this.rating = rating;
+        this.reviewText = reviewText;
+        this.reviewDate = reviewDate;
+    }
 
-	    public void setReviewerName(String reviewerName) {
-	        this.reviewerName = reviewerName;
-	    }
+    // Getters and setters for encapsulation
+    public int getReviewId() {
+        return reviewId;
+    }
 
-	    // Getter and setter methods for rating
-	    public int getRating() {
-	        return rating;
-	    }
+    public void setReviewId(int reviewId) {
+        this.reviewId = reviewId;
+    }
 
-	    public void setRating(int rating) {
-	        this.rating = rating;
-	    }
+    public int getListingId() {
+        return listingId;
+    }
 
-	    // Getter and setter methods for comment
-	    public String getComment() {
-	        return comment;
-	    }
+    public void setListingId(int listingId) {
+        this.listingId = listingId;
+    }
 
-	    public void setComment(String comment) {
-	        this.comment = comment;
-	    }
+    public int getUserId() {
+        return userId;
+    }
 
-	    // Method to add a review
-	    public void addReview(PropertyReviews review) {
-	        reviews.add(review);
-	        notifyObservers(review);
-	    }
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
 
-	    // Method to register observers
-	    public void addObserver(PropertyReviewObserver observer) {
-	        observers.add(observer);
-	    }
+    public Float getRating() {
+        return rating;
+    }
 
-	    // Method to notify observers
-	    private void notifyObservers(PropertyReviews review) {
-	        for (PropertyReviewObserver observer : observers) {
-	            observer.update(review);
-	        }
-	    }
+    public void setRating(Float rating) {
+        this.rating = rating;
+    }
 
-	    // Getter and setter methods for reviews
-	    public List<PropertyReviews> getReviews() {
-	        return reviews;
-	    }
+    public String getReviewText() {
+        return reviewText;
+    }
 
-	    public void setReviews(List<PropertyReviews> reviews) {
-	        this.reviews = reviews;
-	    }
-	}
+    public void setReviewText(String reviewText) {
+        this.reviewText = reviewText;
+    }
 
-	// PropertyReviewObserver.java
-	interface PropertyReviewObserver {
-	    void update(PropertyReviews review);
-	}
+    public Date getReviewDate() {
+        return reviewDate;
+    }
+
+    public void setReviewDate(Date reviewDate) {
+        this.reviewDate = reviewDate;
+    }
+}	

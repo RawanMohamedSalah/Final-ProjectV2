@@ -1,4 +1,5 @@
 package servlet;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -26,7 +27,7 @@ public class ListingServlet extends HttpServlet {
     @Override
     public void init() {
         // Retrieve or construct DatabaseConfig with appropriate credentials
-        DatabaseConfig config = new DatabaseConfig("jdbc:mysql://localhost:3306/configuration_pro", "root", "PoPo2222@.com");
+        DatabaseConfig config = new DatabaseConfig("jdbc:mysql://localhost:3306/configurationpro_v2", "root", "PoPo2222@.com");
         DatabaseConnection dbConnection = new MySqlDatabaseConnection(config);
         listingDao = new ListingDaoImpl(dbConnection);
     }
@@ -37,13 +38,16 @@ public class ListingServlet extends HttpServlet {
             List<Listing> listings = listingDao.getAllListings();
             System.out.println("Number of listings: " + listings.size());
             for (Listing listing : listings) {
-                System.out.println("Listing ID: " + listing.getListingId());
-                System.out.println("City ID: " + listing.getCityId());
-                System.out.println("Category ID: " + listing.getCategoryId());
-                System.out.println("Agent ID: " + listing.getAgentId());
+                System.out.println("Listing ID: " + listing.getListing_id());
+                System.out.println("City ID: " + listing.getCity_id());
+                System.out.println("Category ID: " + listing.getCategory_id());
+                System.out.println("Agent ID: " + listing.getAgent_id());
+                System.out.println("Offer ID: " + listing.getOffer_id());
+                System.out.println("Property Type ID: " + listing.getProperty_type_id());
+                System.out.println("Documents ID: " + listing.getDocuments_id());
                 System.out.println("Bedrooms: " + listing.getBedrooms());
                 System.out.println("Bathrooms: " + listing.getBathrooms());
-                System.out.println("Square Footage: " + listing.getSquareFootage());
+                System.out.println("Square Footage: " + listing.getSquare_footage());
                 System.out.println("Price: " + listing.getPrice());
             }
             request.setAttribute("listings", listings);
@@ -70,4 +74,5 @@ public class ListingServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doGet(request, response);
     }
+
 }

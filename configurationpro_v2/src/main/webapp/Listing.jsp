@@ -1788,7 +1788,7 @@ img {
                                         <li><a href="AboutUs.jsp">About Us</a></li>
                                         <li><a href="Listing.jsp">Listings</a>
                                             <ul class="dropdown">
-                                                <li><a href="listing.jsp">Listings</a></li>
+                                                <li><a href="Listing.jsp">Listings</a></li>
                                                 <li><a href="SingleListing.jsp">Single Listings</a></li>
                                             </ul>
                                         </li>
@@ -1803,7 +1803,7 @@ img {
                                     </ul>
                                 </li>
                                 <li><a href="AboutUs.jsp">About Us</a></li>
-                                <li><a href="listing.jsp">Properties</a></li>
+                                <li><a href="Listing.jsp">Properties</a></li>
                                 <li><a href="Blog.jsp">Blog</a></li>
                                 <li><a href="#">Mega Menu</a>
                                     <div class="megamenu">

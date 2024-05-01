@@ -19,7 +19,7 @@
         <c:forEach var="transaction" items="${transactions}">
             <tr>
                 <td><c:out value="${transaction.transaction_id}"/></td>
-                <td><c:out value="${transaction.property_id}"/></td>
+                <td><c:out value="${transaction.listing_id}"/></td>
                 <td><c:out value="${transaction.buyer_id}"/></td>
                 <td><c:out value="${transaction.seller_id}"/></td>
                 <td><c:out value="${transaction.transaction_date}"/></td>

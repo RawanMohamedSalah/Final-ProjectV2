@@ -1,1 +1,1 @@
-SELECT * FROM configuration_pro.category;
+SELECT * FROM configuration_pro.user;

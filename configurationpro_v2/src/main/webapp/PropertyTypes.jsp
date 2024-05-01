@@ -13,10 +13,11 @@
         </tr>
         <c:forEach var="propertyType" items="${propertyTypes}">
             <tr>
-                <td><c:out value="${propertyType.type_is}"/></td>
-                <td><c:out value="${propertyType.type_name}"/></td>
+                <td><c:out value="${propertyType.propertyTypeId}"/></td>
+                <td><c:out value="${propertyType.propertyTypeName}"/></td>
             </tr>
         </c:forEach>
     </table>
+    <p>${errorMessage}</p>
 </body>
 </html>

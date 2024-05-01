@@ -1,4 +1,5 @@
 package servlet;
+
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
@@ -10,9 +11,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-import core.OfferType;
+import core.Offer;
 import core.OfferDao;
-import core.OfferImpl;
+import core.OfferDaoImpl;
 import database.DatabaseConnection;
 import database.DataAccessException;
 import database.DatabaseConfig;
@@ -26,22 +27,21 @@ public class OfferServlet extends HttpServlet {
     @Override
     public void init() {
         // Retrieve or construct DatabaseConfig with appropriate credentials
-        DatabaseConfig config = new DatabaseConfig("jdbc:mysql://localhost:3306/configuration_pro", "root", "PoPo2222@.com");
+        DatabaseConfig config = new DatabaseConfig("jdbc:mysql://localhost:3306/configurationpro_v2", "root", "PoPo2222@.com");
         DatabaseConnection dbConnection = new MySqlDatabaseConnection(config);
-        offerDao = new OfferImpl(dbConnection);
+        offerDao = new OfferDaoImpl(dbConnection);
     }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         try {
-            List<OfferType> offerTypes = offerDao.getAllOfferTypes();
-            System.out.println("Number of offer types: " + offerTypes.size());
-            for (OfferType offerType : offerTypes) {
-                System.out.println("Offer Type ID: " + offerType.getOfferTypeId());
-                System.out.println("Offer Type Name: " + offerType.getOfferTypeName());
-                System.out.println("Discount Percentage: " + offerType.getDiscountPercentage());
+            List<Offer> offers = offerDao.getAllOffers();
+            System.out.println("Number of offers: " + offers.size());
+            for (Offer offer : offers) {
+                System.out.println("Offer ID: " + offer.getOfferId());
+                System.out.println("Offer Description: " + offer.getOfferDescription());
             }
-            request.setAttribute("offerTypes", offerTypes);
+            request.setAttribute("offers", offers);
             RequestDispatcher dispatcher = request.getRequestDispatcher("Offer.jsp");
             dispatcher.forward(request, response);
         } catch (SQLException e) {

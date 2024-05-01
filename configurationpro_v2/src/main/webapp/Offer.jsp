@@ -2,21 +2,19 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>Offer Types</title>
+    <title>Offers</title>
 </head>
 <body>
-    <h1>List of Offer Types</h1>
+    <h1>List of Offers</h1>
     <table border="1">
         <tr>
-            <th>Offer Type ID</th>
-            <th>Offer Type Name</th>
-            <th>Discount Percentage</th>
+            <th>Offer ID</th>
+            <th>Description</th>
         </tr>
-        <c:forEach var="offerType" items="${offerTypes}">
+        <c:forEach var="offer" items="${offers}">
             <tr>
-                <td><c:out value="${offerType.offerTypeId}"/></td>
-                <td><c:out value="${offerType.offerTypeName}"/></td>
-                <td><c:out value="${offerType.discountPercentage}"/></td>
+                <td><c:out value="${offer.offerId}"/></td>
+                <td><c:out value="${offer.offerDescription}"/></td>
             </tr>
         </c:forEach>
     </table>
